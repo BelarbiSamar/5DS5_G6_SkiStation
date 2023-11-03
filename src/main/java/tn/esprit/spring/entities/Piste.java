@@ -6,19 +6,17 @@ import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+@Entity
 @Getter
 @Setter
-@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString
+@Builder
 @NoArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)
-@Entity
+@AllArgsConstructor
 public class Piste implements Serializable {
 
 	@Id
