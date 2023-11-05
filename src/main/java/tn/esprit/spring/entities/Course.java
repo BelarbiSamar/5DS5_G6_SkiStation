@@ -22,6 +22,7 @@ public class Course implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	Long numCourse;
 	int level;
 	@Enumerated(EnumType.STRING)
