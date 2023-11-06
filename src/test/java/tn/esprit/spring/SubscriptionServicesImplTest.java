@@ -41,19 +41,45 @@ import static org.mockito.Mockito.*;
         }
 
         @Test
-        public void testAddSubscription() {
-            // Create a Subscription object
+        public void testUpdateSubscription() {
+            // Create a Subscription object with a known ID
+            Long subscriptionId = 1L;
             Subscription subscription = new Subscription();
-            subscription.setTypeSub(TypeSubscription.ANNUAL);
+            subscription.setNumSub(subscriptionId);
 
-            // Define the expected behavior of the repository mock
+            // Define the expected behavior of the repository mock for updating
             when(subscriptionRepository.save(any(Subscription.class))).thenReturn(subscription);
 
             // Call the method under test
-            Subscription result = subscriptionService.addSubscription(subscription);
+            Subscription result = subscriptionService.updateSubscription(subscription);
 
             // Assert the result
-            assertEquals(TypeSubscription.ANNUAL, result.getTypeSub());
+            assertEquals(subscriptionId, result.getNumSub());
+        }
+
+        @Test
+        public void testRetrieveSubscriptionsByDates() {
+            // Define start and end dates for testing
+            LocalDate startDate = LocalDate.of(2023, 1, 1);
+            LocalDate endDate = LocalDate.of(2023, 6, 30);
+
+            // Create a list of mock Subscription objects
+            Subscription subscription1 = new Subscription();
+            subscription1.setStartDate(startDate);
+            Subscription subscription2 = new Subscription();
+            subscription2.setStartDate(endDate);
+            List<Subscription> mockSubscriptions = new ArrayList<>();
+            mockSubscriptions.add(subscription1);
+            mockSubscriptions.add(subscription2);
+
+            // Define the expected behavior of the repository mock
+            when(subscriptionRepository.getSubscriptionsByStartDateBetween(startDate, endDate)).thenReturn(mockSubscriptions);
+
+            // Call the method under test
+            List<Subscription> result = subscriptionService.retrieveSubscriptionsByDates(startDate, endDate);
+
+            // Assert the result
+            assertEquals(2, result.size());
         }
 
         @Test
