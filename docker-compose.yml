@@ -5,7 +5,9 @@ services:
     image: saleminess/ski:latest
     restart: always
     ports:
-      - "8080:8089"
+      - "8089:8089"
+    depends_on:
+      - mysql
 
   mysql:
     image: mysql
