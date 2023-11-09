@@ -1,0 +1,41 @@
+version: '2.3.3'
+
+networks:
+  spring-network:
+
+services:
+  mysqldb:
+    image: mysql:8.2
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - spring-network
+
+  Stationski:
+    image: sahnounseifallah8/stationski-1.1.0.jar
+    ports:
+      - 8089:8089
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_PORT: 3306
+    depends_on:
+      - mysqldb
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://mysqldb:3306"]
+      interval: 10s
+      retries: 5
+    networks:
+      - spring-network
+
+volumes:
+  db:
+
+
+
+
+
+
+
