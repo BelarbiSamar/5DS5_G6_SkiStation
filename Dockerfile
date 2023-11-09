@@ -1,3 +1,4 @@
-FROM maven:3.8.3-openjdk-17
+FROM openjdk:8-jdk
 WORKDIR /app
-COPY . .
+COPY ./target/*.jar /app/khaddem.jar
+CMD ["java", "-jar", "/app/khaddem.jar"]
