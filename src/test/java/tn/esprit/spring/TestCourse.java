@@ -76,11 +76,7 @@ class TestCourse {
         Course expectedCourse = new Course();
         expectedCourse.setId(courseId);
 
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e49b69b5ab153e2e698a377dce2905ad5b3ab489
         when(courseRepository.findById(courseId)).thenReturn(Optional.of(expectedCourse));
 
         // When
@@ -95,8 +91,4 @@ class TestCourse {
 
 
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e49b69b5ab153e2e698a377dce2905ad5b3ab489
