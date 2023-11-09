@@ -16,6 +16,10 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<sonar.host.url>http://192.168.1.13:9000</sonar.host.url>
+		<sonar.login>sqp_3cec86ccd2b11da3a065e119c985ef5aeff29bb6</sonar.login>
+		<sonar.projectKey>5DS5_G6_SkiStation</sonar.projectKey>
+		<sonar.projectName>5DS5_G6_SkiStation</sonar.projectName>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -113,5 +117,13 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>deploymentRepo</id>
+			<name>Nexus Repository</name>
+			<url>http://192.168.1.13:8082/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 
 </project>
