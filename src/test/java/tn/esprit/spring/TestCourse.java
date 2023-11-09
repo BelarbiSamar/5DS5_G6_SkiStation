@@ -76,6 +76,7 @@ class TestCourse {
         Course expectedCourse = new Course();
         expectedCourse.setId(courseId);
 
+        
         when(courseRepository.findById(courseId)).thenReturn(Optional.of(expectedCourse));
 
         // When
