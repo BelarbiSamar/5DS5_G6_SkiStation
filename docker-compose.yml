@@ -1,20 +1,23 @@
 version: '3'
 services:
-
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
+  app:
+    container_name: app
+    image: saleminess/ski:latest
+    restart: always
     ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - "8089:8089"
+    depends_on:
+      - mysql
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    restart: unless-stopped
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: stationSki
+      MYSQL_USER: stationSki
+      MYSQL_PASSWORD: P4ssword!
+      MYSQL_ROOT_PASSWORD: P4ssword!
     volumes:
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - ./grafana/datasource.yml:/etc/grafana/datasource.yml 
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
