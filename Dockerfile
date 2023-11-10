@@ -1,4 +1,4 @@
 FROM openjdk:11
 EXPOSE 8089
-ADD target/gestion-station-ski.jar stationski.jar
-ENTRYPOINT ["java","-jar","/stationski.jar"]
+ADD target/gestion-station-ski.jar samardevops.jar
+ENTRYPOINT ["java","-jar","/samardevops.jar"]
